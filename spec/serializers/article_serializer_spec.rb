@@ -17,10 +17,10 @@ RSpec.describe ArticleSerializer do
       let(:article_hash) { result.fetch(:article) }
 
       it 'should contain type and id' do
-        expect(article_hash.keys).to match_array([:id, :title, :attributes])
+        expect(article_hash.keys).to match_array([:id, :type, :attributes])
         expect(article_hash).to match({
           id: article.id.to_s,
-          type: 'articles',
+          type: 'article',
           attributes: be_kind_of(Hash)
         })
       end
