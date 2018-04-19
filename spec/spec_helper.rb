@@ -93,4 +93,15 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+Dir["./spec/support/custom_matchers/**/*.rb"].each { |f| require f}
+
+  def body_as_json
+    json_str_to_hash(response.body)
+  end
+
+  def json_str_to_hash(str)
+    JSON.parse(str).with_indifferent_access
+  end
+
 end

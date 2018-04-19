@@ -16,13 +16,13 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     it "response with JSON body containing expected Article attributes" do
-      hash_body = nil
-      expect { hash_body = JSON.parse(response.body).
-                                with_indifferent_access
-                                }.not_to raise_exception
-
-      expect(hash_body.keys).to match_array(['id', 'title'])
-      expect(hash_body).to match({
+      # hash_body = nil
+      # expect { hash_body = JSON.parse(response.body).
+      #                           with_indifferent_access
+      #                           }.not_to raise_exception
+      expect(response.body).to look_like_json
+      expect(body_as_json.keys).to match_array(['id', 'title'])
+      expect(body_as_json).to match({
         id: article.id,
         title: 'Hello World'
       })
